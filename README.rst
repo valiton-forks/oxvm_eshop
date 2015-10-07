@@ -469,6 +469,8 @@ list of available modules*).
 This is a known issue which is fixed in the development and new upcoming
 releases of eShop.
 
+To check which shop is compatible with testing library please refer to `compatibility list <https://github.com/OXID-eSales/testing_library/tree/b-1.0#compatibility-with-oxid-shops>`_.
+
 Browser shows "Zend Guard Run-time support missing!"
 ----------------------------------------------------
 
