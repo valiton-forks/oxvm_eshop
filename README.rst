@@ -98,7 +98,7 @@ Examples
 Below is a list of possible frequent changes which are typically done after
 cloning this repository.
 
-One can just copy ant paste the example snippets from the list bellow to the
+One can just copy and paste the example snippets from the list below to the
 ``personal.yml`` file at the root of this repository.
 
 Change VM provider
