@@ -18,4 +18,4 @@
   shell: "wget -O {{ eshop.composer.root }}/composer.lock {{ eshop.composer.lock_source_url }} creates={{ eshop.composer.root }}/composer.lock"
 
 - name: Run composer install
-  shell: "cd {{ eshop.composer.root }} && {{ eshop.composer.env }} composer install"
+  shell: "cd {{ eshop.composer.root }} && {{ eshop.composer.env }} composer install --prefer-{{ eshop.composer.prefer }}"
