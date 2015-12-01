@@ -230,6 +230,43 @@ used to run Selenium tests with the help of
   selenium:
     install: true
 
+Customize email monitoring integration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Integration of `Mailhog <https://github.com/mailhog/MailHog>`_ allows to monitor
+e-mail activity from the eShop. List of e-mails could be seen at:
+http://www.oxideshop.dev/mail/
+
+Possible configuration options for Mailhog:
+
+* ``web_port`` - web UI port (``8025`` is the default value which means that the
+  UI can be accessed by the following URL: http://www.oxideshop.dev:8025/)
+* ``smtp_port`` - SMTP server port (``1025`` is the default value)
+* ``web_alias`` - an URL alias for the default virtual host to act as a proxy
+  for web UI of mailhog (``/mail/`` is the default value which means that the UI
+  can be access by the following URL: http://www.oxideshop.dev/mail/)
+
+An example configuration which changes web UI port to ``8024``, SMTP port to
+``1026`` and alias to ``/emails/``:
+
+.. code:: yaml
+
+  ---
+  mailhog:
+    web_port: 8024
+    smtp_port: 1026
+    web_alias: /emails/
+
+Mailhog is installed by default as it has ``install: true`` option in the
+default configuration file. In order to disable email monitoring please use the
+following configuration snippet:
+
+.. code:: yaml
+
+  ---
+  mailhog:
+    install: false
+
 .. [#personal_git_ignore] ``personal.yml`` configuration file is already
   included in ``.gitignore`` and should not be visible as changes to the actual
   repository.
