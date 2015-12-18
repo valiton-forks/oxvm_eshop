@@ -299,6 +299,40 @@ following configuration snippet:
   This should also be reflected in ``config.inc.php`` file as ``sShopURL``
   parameter, e.g. http://www.oxideshop.dev:6081/ .
 
+Change PHP version
+^^^^^^^^^^^^^^^^^^
+
+By default latest PHP version found in ubuntu repository is installed.
+
+When PHP version is specified, `PHPBrew <https://github.com/phpbrew/phpbrew>`_ is installed and used for switching between versions.
+Requested version will be either built on the fly or downloaded from assets [#assets_repository]_ repository.
+
+.. code:: yaml
+
+  ---
+  php:
+    version: 5.3
+
+To disable downloading of cached versions from assets repository, set ``cache_repository`` to empty value.
+Alternatively it is possible to build your own PHP packages and place them into any svn repository.
+
+Only when php version is specified, PHPBrew will be installed so those commands became available inside VM:
+
+* ``phpbrew list`` - lists installed PHP versions
+* ``phpbrew known`` - lists available PHP versions
+* ``phpbuild [version]`` - builds PHP version
+* ``phpswitch [version]`` - switch PHP version
+* ``phpswitch off`` - switch back to default PHP version
+
+When versions is downloaded from assets repository, phpbrew will not have its source code and therefore will not be
+ able to build php extensions. To download PHP source run this command with full php version specified:
+
+.. code:: bash
+
+  phpbrew download [phpversion] && tar jxf ~/.phpbrew/distfiles/php-[phpversion].tar.bz2 -C ~/.phpbrew/build/
+
+.. [#assets_repository] Repository with some already prebuilt versions of php for faster installation.
+
 SDK
 ===
 
