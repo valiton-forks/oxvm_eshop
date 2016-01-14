@@ -324,8 +324,7 @@ Only when php version is specified, PHPBrew will be installed so those commands 
 * ``phpswitch [version]`` - switch PHP version
 * ``phpswitch off`` - switch back to default PHP version
 
-When versions is downloaded from assets repository, phpbrew will not have its source code and therefore will not be
- able to build php extensions. To download PHP source run this command with full php version specified:
+When versions is downloaded from assets repository, phpbrew will not have its source code and therefore will not be able to build php extensions. To download PHP source run this command with full php version specified:
 
 .. code:: bash
 
