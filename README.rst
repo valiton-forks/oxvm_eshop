@@ -576,3 +576,18 @@ Loader extension. List of possible extension versions can be found in
 
 More information on how to install and configure Zend Guard Loader can be found
 at: http://files.zend.com/help/Zend-Guard/content/installing_zend_guard_loader.htm
+
+On Windows machines, getting "requires a TTY"
+---------------------------------------------
+
+The example of error message:
+
+.. code:: bash
+
+  { oxvm_eshop } master » vagrant destroy
+  Vagrant is attempting to interface with the UI in a way that requires
+  a TTY. Most actions in Vagrant that require a TTY have configuration
+  switches to disable this requirement. Please do that or run Vagrant
+  with TTY.
+
+Please check answers on stackoverflow for your specific case: http://stackoverflow.com/questions/23633276/vagrant-is-attempting-to-interface-with-the-ui-in-a-way-that-requires-a-tty
