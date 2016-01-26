@@ -12,13 +12,7 @@
   when: not check_eshop_config.stat.exists and check_eshop_config_dist.stat.exists
 
 - name: Update configuration value
-  replace: >
-    dest={{ eshop.config.path }}
-    regexp="{{ item.pattern }}"
-    replace="{{ item.value }}"
-    owner={{ apache.user }}
-    group={{ apache.group }}
-    mode=0664
+  shell: "sed -i 's|{{ item.pattern }}|{{ item.value }}|' {{ eshop.config.path }}"
   with_items:
     - {'pattern': '<dbHost>', 'value': "localhost"}
     - {'pattern': '<dbName>', 'value': "{{ mysql.database }}"}
