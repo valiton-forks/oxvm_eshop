@@ -7,9 +7,17 @@
   stat: "path={{ eshop.config.path_dist }}"
   register: check_eshop_config_dist
 
+- name: Check for deploy configuration file
+  stat: "path={{ eshop.config.path_deploy }}"
+  register: check_eshop_config_deploy
+
 - name: Copy dist configuration file
   shell: "cp {{ eshop.config.path_dist }} {{ eshop.config.path }}"
   when: not check_eshop_config.stat.exists and check_eshop_config_dist.stat.exists
+
+- name: Copy deploy configuration file
+  shell: "cp {{ eshop.config.path_deploy }} {{ eshop.config.path }}"
+  when: not check_eshop_config.stat.exists and not check_eshop_config_dist.stat.exists and check_eshop_config_deploy.stat.exists
 
 - name: Update configuration value
   shell: "sed -i 's|{{ item.pattern }}|{{ item.value }}|' {{ eshop.config.path }}"
