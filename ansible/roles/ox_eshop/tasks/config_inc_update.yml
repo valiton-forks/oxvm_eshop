@@ -14,14 +14,14 @@
 - name: Update configuration value
   shell: "sed -i 's|{{ item.pattern }}|{{ item.value }}|' {{ eshop.config.path }}"
   with_items:
-    - {'pattern': '<dbHost>', 'value': "localhost"}
-    - {'pattern': '<dbName>', 'value': "{{ mysql.database }}"}
-    - {'pattern': '<dbUser>', 'value': "{{ mysql.user }}"}
-    - {'pattern': '<dbPwd>', 'value': "{{ mysql.password }}"}
-    - {'pattern': '<sShopURL>', 'value': "http://{{ apache.servername }}"}
-    - {'pattern': '<sShopDir>', 'value': "{{ eshop_path.source }}"}
-    - {'pattern': '<sCompileDir>', 'value': "{{ eshop_path.source }}/tmp"}
-    - {'pattern': '<iUtfMode>', 'value': "{{ eshop.config.utf_mode }}"}
+    - {'pattern': '<dbHost.*>', 'value': "localhost"}
+    - {'pattern': '<dbName.*>', 'value': "{{ mysql.database }}"}
+    - {'pattern': '<dbUser.*>', 'value': "{{ mysql.user }}"}
+    - {'pattern': '<dbPwd.*>', 'value': "{{ mysql.password }}"}
+    - {'pattern': '<sShopURL.*>', 'value': "http://{{ apache.servername }}"}
+    - {'pattern': '<sShopDir.*>', 'value': "{{ eshop_path.source }}"}
+    - {'pattern': '<sCompileDir.*>', 'value': "{{ eshop_path.source }}/tmp"}
+    - {'pattern': '<iUtfMode.*>', 'value': "{{ eshop.config.utf_mode }}"}
 
 - name: Ensure temporary directory exists
   file: "path={{ eshop_path.source }}/tmp state=directory"
