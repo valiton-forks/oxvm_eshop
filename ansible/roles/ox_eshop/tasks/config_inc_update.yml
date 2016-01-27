@@ -36,3 +36,10 @@
 
 - name: Reset shop
   shell: "{{ eshop_path.source }}/vendor/bin/reset-shop"
+  ignore_errors: yes
+  register: reset_shop
+
+- name: Display warning about failed command line setup
+  shell: 'true'
+  notify: display reset shop error
+  when: "reset_shop.rc != 0"
