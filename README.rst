@@ -267,6 +267,21 @@ following configuration snippet:
   mailhog:
     install: false
 
+Composer parallel install plugin
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The composer parallel install plugin
+`hirak/prestissimo <https://github.com/hirak/prestissimo>`_ is enabled by default.
+In order to disable it please use the following snippet:
+
+.. code:: yaml
+
+  ---
+  php:
+    composer:
+      prestissimo:
+        install: false
+
 .. [#personal_git_ignore] ``personal.yml`` configuration file is already
   included in ``.gitignore`` and should not be visible as changes to the actual
   repository.
