@@ -8,7 +8,7 @@
   when: eshop.composer.cache_url
 
 - name: Extract composer cache
-  shell: tar zxf /tmp/composer_cache.tar.gz -C ~/.composer/
+  unarchive: src=/tmp/composer_cache.tar.gz dest=~/.composer/ copy=no
   when: eshop.composer.cache_url
 
 - name: Create composer json file
