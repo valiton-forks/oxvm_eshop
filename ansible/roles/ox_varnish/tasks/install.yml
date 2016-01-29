@@ -21,6 +21,6 @@
     replace="{{ eshop_ip_cmd.stdout }}"
 
 - name: Update Varnish configuration servers list
-  sudo: yes
+  become: yes
   local_copy: src=/tmp/ox_servers.vcl dest={{ varnish.servers_config.target }}
   notify: validate existing default varnish configuration
