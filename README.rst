@@ -36,19 +36,18 @@ Dependencies
 * `VirtualBox <https://www.virtualbox.org/>`_ [#virtualbox_dependency]_ (>=4.2)
 * `Git <https://git-scm.com/downloads>`_
 * `OpenSSH <http://www.openssh.com/>`_
+* Vagrant plugins:
 
+  * ``vagrant plugin install vagrant-hostmanager``
+  * ``vagrant plugin install vagrant-bindfs``
+  * ``vagrant plugin install vagrant-triggers``
+  * ``vagrant plugin install vagrant-lxc`` (*If* `LXC <https://github.com/fgrehm/vagrant-lxc>`_ *will be used for provision process.*)
+  * ``vagrant plugin install vagrant-parallels`` (*If* `Parallels <https://github.com/Parallels/vagrant-parallels>`_ *will be used for provision process.*)
+  
 .. _`Quick start`
 
 Quick start
 -----------
-
-* Install necessary **vagrant plugins**:
-
-.. code:: bash
-
-  vagrant plugin install vagrant-hostmanager
-  vagrant plugin install vagrant-bindfs
-  vagrant plugin install vagrant-triggers
 
 * Clone [#recursive_clone]_ out current repository:
 
