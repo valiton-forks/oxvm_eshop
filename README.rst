@@ -24,12 +24,20 @@ Final solution is composed of two repositories (*linked using git sub-modules*):
 Getting started
 ===============
 
-Be sure to install the following **minimal dependencies**:
+Before proceeding with `Quick start`_ please ensure that the
+`Dependencies`_ listed below are installed.
+
+.. _`Dependencies`
+
+Dependencies
+------------
 
 * `Vagrant <https://www.vagrantup.com/downloads.html>`_ (>=1.7)
 * `VirtualBox <https://www.virtualbox.org/>`_ [#virtualbox_dependency]_ (>=4.2)
 * `Git <https://git-scm.com/downloads>`_
 * `OpenSSH <http://www.openssh.com/>`_
+
+.. _`Quick start`
 
 Quick start
 -----------
