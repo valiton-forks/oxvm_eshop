@@ -4,7 +4,7 @@
   register: eshop_source
 
 - name: Clone out eshop repository
-  sudo: yes
+  become: yes
   git: repo={{ eshop.source.repo }} dest=/opt/oe
   when: not eshop_source.stat.exists
 

@@ -4,11 +4,11 @@
   when: eshop.composer.clean_vendors
 
 - name: Download composer cache
-  shell: "wget -O /tmp/composer_cache.tar.gz {{ eshop.composer.cache_url }} creates=/tmp/composer_cache.tar.gz"
+  get_url: "url={{ eshop.composer.cache_url }} dest=/tmp/composer_cache.tar.gz"
   when: eshop.composer.cache_url
 
 - name: Extract composer cache
-  shell: tar zxf /tmp/composer_cache.tar.gz -C ~/.composer/
+  unarchive: src=/tmp/composer_cache.tar.gz dest=~/.composer/ copy=no
   when: eshop.composer.cache_url
 
 - name: Create composer json file
