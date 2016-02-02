@@ -5,7 +5,7 @@
 
 - name: Clone out eshop repository
   become: yes
-  git: repo={{ eshop.source.repo }} dest=/opt/oe
+  git: repo={{ eshop.source.repo }} dest=/opt/oe version={{ eshop.source.version }}
   when: not eshop_source.stat.exists
 
 - name: Transfer eshop clone to shared folder
