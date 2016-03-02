@@ -12,10 +12,14 @@
   when: eshop.composer.cache_url
 
 - name: Create composer json file
-  shell: "wget -O {{ eshop.composer.root }}/composer.json {{ eshop.composer.json_source_url }} creates={{ eshop.composer.root }}/composer.json"
+  get_url:
+    url: "{{ eshop.composer.json_source_url }}"
+    dest: "{{ eshop.composer.root }}/composer.json"
 
 - name: Create composer lock file
-  shell: "wget -O {{ eshop.composer.root }}/composer.lock {{ eshop.composer.lock_source_url }} creates={{ eshop.composer.root }}/composer.lock"
+  get_url:
+    url: "{{ eshop.composer.lock_source_url }}"
+    dest: "{{ eshop.composer.root }}/composer.lock"
 
 - name: Run composer install
   shell: "cd {{ eshop.composer.root }} && {{ eshop.composer.env }} composer install --prefer-{{ eshop.composer.prefer }}"
