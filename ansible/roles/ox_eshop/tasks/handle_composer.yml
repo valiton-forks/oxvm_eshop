@@ -15,11 +15,13 @@
   get_url:
     url: "{{ eshop.composer.json_source_url }}"
     dest: "{{ eshop.composer.root }}/composer.json"
+  register: create_composer_json
 
 - name: Create composer lock file
   get_url:
     url: "{{ eshop.composer.lock_source_url }}"
     dest: "{{ eshop.composer.root }}/composer.lock"
+  when: create_composer_json.changed
 
 - name: Run composer install
   shell: "cd {{ eshop.composer.root }} && {{ eshop.composer.env }} composer install --prefer-{{ eshop.composer.prefer }}"
