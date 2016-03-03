@@ -23,5 +23,23 @@
     dest: "{{ eshop.composer.root }}/composer.lock"
   when: create_composer_json.changed
 
+- name: Check if composer lock is located inside a git repository
+  shell: "cd {{ eshop.composer.root }} && git status"
+  ignore_errors: yes
+  changed_when: false
+  register: composer_lock_git_repo
+
+- name: Check if composer lock needs to be deleted
+  shell: "cd {{ eshop.composer.root }} && [ \"$(git merge-base 0f17ddbf6e78179803e5577ab90244f1b3cfa1b7 $(git rev-parse --abbrev-ref HEAD))\" = \"0f17ddbf6e78179803e5577ab90244f1b3cfa1b7\" ]"
+  ignore_errors: yes
+  changed_when: false
+  register: composer_lock_delete
+
+- name: Delete composer lock file
+  file:
+    path: "{{ eshop.composer.root }}/composer.lock"
+    state: absent
+  when: composer_lock_git_repo.rc == 0 and composer_lock_delete.rc == 0
+
 - name: Run composer install
   shell: "cd {{ eshop.composer.root }} && {{ eshop.composer.env }} composer install --prefer-{{ eshop.composer.prefer }}"
