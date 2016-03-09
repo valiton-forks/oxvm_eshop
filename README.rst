@@ -101,6 +101,10 @@ provision process will start to show any kind of errors, please try to use
 ``vagrant destroy && vagrant up`` for the process to stat over from a clean
 state.
 
+Hint: you have to care for the syntax/semantics at yourself. So, if you get an error while ``vagrant provision``
+your personal.yml is the start point for troubleshooting. Has every entry value? At the moment no empty entries will work.
+
+
 Examples
 --------
 
