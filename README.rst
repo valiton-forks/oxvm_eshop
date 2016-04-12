@@ -126,12 +126,14 @@ Alternatively it is possible to build your own PHP packages and place them into 
 Only when php version is specified, PHPBrew will be installed so those commands became available inside VM:
 
 * ``phpbrew list`` - lists installed PHP versions
+* ``phpbrew update --old`` - Updates PHP versions list with old php versions
 * ``phpbrew known`` - lists available PHP versions
 * ``phpbuild [version]`` - builds PHP version
 * ``phpswitch [version]`` - switch PHP version
 * ``phpswitch off`` - switch back to default PHP version
 
-When versions is downloaded from assets repository, phpbrew will not have its source code and therefore will not be able to build php extensions. To download PHP source run this command with full php version specified:
+When versions is downloaded from assets repository, phpbrew will not have its source code and therefore will not be able to build php extensions.
+To download PHP source run this command with full php version specified:
 
 .. code:: bash
 
