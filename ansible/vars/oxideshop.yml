@@ -32,6 +32,10 @@ php:
       install: true
 mailhog:
   install: true
+adminer:
+  install: true
+adminer_editor:
+  install: true
 varnish:
   default_config:
     source: "{{ eshop_path.library }}/ReverseProxy/Varnish/default.vcl"

@@ -41,7 +41,7 @@ Dependencies
   * ``vagrant plugin install vagrant-hostmanager vagrant-bindfs vagrant-triggers``
   * ``vagrant plugin install vagrant-lxc`` (*If* `LXC <https://github.com/fgrehm/vagrant-lxc>`_ *will be used for provision process.*)
   * ``vagrant plugin install vagrant-parallels`` (*If* `Parallels <https://github.com/Parallels/vagrant-parallels>`_ *will be used for provision process.*)
-  
+
 .. _`Quick start`
 
 Quick start
@@ -304,6 +304,49 @@ following configuration snippet:
   ---
   mailhog:
     install: false
+
+Customize MySQL administration web app integration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Integration of `Adminer <https://github.com/vrana/adminer>`_ allows to access
+MySQL administrative tasks and data through web alias ``adminer`` at:
+http://www.oxideshop.dev/adminer/
+
+Integration of
+`Adminer editor <https://github.com/vrana/adminer/tree/master/editor>`_ allows
+to access and modify MySQL data through web alias ``adminer_editor`` at:
+http://www.oxideshop.dev/adminer_editor/
+
+Possible configuration options for **Adminer** and **Adminer editor**:
+
+* ``pkg_url`` - An URL which points to the compiled PHP version of the
+  application
+* ``web_alias`` - An alias used to access the application (Default value is
+  ``adminer``/``adminer_editor``, which means that in order to access it one has
+  to open http://www.oxideshop.dev/adminer/ /
+  http://www.oxideshop.dev/adminer_editor/)
+* ``pkg_sha256`` - A SHA-256 hash of file contents downloaded from resource
+  defined in ``pkg_url``
+
+**Adminer** and **Adminer editor** are installed by default as they have
+``install: true`` option in the default configuration file. In order to disable
+these tools please use the following configuration snippet:
+
+.. code:: yaml
+
+  ---
+  adminer:
+    install: false
+  adminer_editor:
+    install: false
+
+Keep in mind that your MySQL credentials will be already present in the login
+page and there is **no need to enter the login data manually**. The following
+variables are used to gain MySQL credentials:
+
+* ``mysql.user`` - User name which has access to the created database
+* ``mysql.password`` - Password of previously mentioned user
+* ``mysql.database`` - Name of the newly created database
 
 Composer parallel install plugin
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
