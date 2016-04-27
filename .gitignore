@@ -7,6 +7,9 @@
 # Python
 *.py[cod]
 
+# IDE/editors
+*.swp
+
 # Ansible
 personal.yml
 
