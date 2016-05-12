@@ -67,6 +67,8 @@ Quick start
 
     * Username: ``admin``
     * Password: ``admin``
+    
+* If something doesn't work, see the `Troubleshooting`_ section.
 
 .. [#virtualbox_dependency] VirtualBox is listed as dependency due to the fact
   that it is the default chosen provider for the VM. In case other providers
@@ -96,6 +98,10 @@ the changes are related to the shared folder use ``vagrant reload``. In case the
 provision process will start to show any kind of errors, please try to use
 ``vagrant destroy && vagrant up`` for the process to stat over from a clean
 state.
+
+Hint: you have to care for the syntax/semantics at yourself. So, if you get an error while ``vagrant provision``
+your personal.yml is the start point for troubleshooting. Has every entry value? At the moment no empty entries will work.
+
 
 Examples
 --------
@@ -652,6 +658,11 @@ Loader extension. List of possible extension versions can be found in
 
 More information on how to install and configure Zend Guard Loader can be found
 at: http://files.zend.com/help/Zend-Guard/content/installing_zend_guard_loader.htm
+
+The tests fail after a fresh install with a message like "can't redefine class XXX"
+-----------------------------------------------------------------------------------
+
+Maybe you have to create a github token and configure it as described in `Define github token for composer`_.
 
 On Windows machines, getting "requires a TTY"
 ---------------------------------------------
