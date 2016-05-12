@@ -1,6 +1,6 @@
 ---
 - name: Make temporary copy of Varnish servers configuration
-  local_copy: src={{ varnish.servers_config.source }} dest=/tmp/ox_servers.vcl
+  copy: src={{ varnish.servers_config.source }} dest=/tmp/ox_servers.vcl remote_src=true
   changed_when: False
 
 - name: Ensure Probe host is present
@@ -22,5 +22,5 @@
 
 - name: Update Varnish configuration servers list
   become: yes
-  local_copy: src=/tmp/ox_servers.vcl dest={{ varnish.servers_config.target }}
+  copy: src=/tmp/ox_servers.vcl dest={{ varnish.servers_config.target }} remote_src=true
   notify: validate existing default varnish configuration
