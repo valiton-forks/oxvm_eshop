@@ -615,7 +615,18 @@ package is being used. In order to solve the issue one has to install
 `Zend Guard Loader <http://www.zend.com/en/products/loader/downloads>`_ which
 will decode the encoded PHP files on execution.
 
-To install and enable Zend Guard Loader PHP extension inside VM:
+To install and enable Zend Guard Loader PHP extension add the following configuration:
+
+.. code:: yaml
+
+  php:
+    zendguard:
+      install: true
+
+Keep in mind that this extension will only work with the default PHP version, i.e.
+at the moment the use of extenion with phpbrew is not automated.
+
+To install and enable Zend Guard Loader PHP extension manually inside the VM:
 
 .. code:: bash
 

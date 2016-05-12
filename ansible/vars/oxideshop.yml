@@ -20,6 +20,8 @@ mysql:
   user: oxid
   password: oxid
 php:
+  zendguard:
+    install: false
   packages:
     - php5-cli
     - php5-intl
