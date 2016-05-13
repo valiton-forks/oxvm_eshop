@@ -38,7 +38,7 @@ Dependencies
 * `OpenSSH <http://www.openssh.com/>`_
 * Vagrant plugins:
 
-  * ``vagrant plugin install vagrant-hostmanager vagrant-bindfs vagrant-triggers``
+  * ``vagrant plugin install vagrant-hostmanager vagrant-triggers``
   * ``vagrant plugin install vagrant-lxc`` (*If* `LXC <https://github.com/fgrehm/vagrant-lxc>`_ *will be used for provision process.*)
   * ``vagrant plugin install vagrant-parallels`` (*If* `Parallels <https://github.com/Parallels/vagrant-parallels>`_ *will be used for provision process.*)
 
