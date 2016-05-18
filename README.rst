@@ -67,7 +67,7 @@ Quick start
 
     * Username: ``admin``
     * Password: ``admin``
-    
+
 * If something doesn't work, see the `Troubleshooting`_ section.
 
 .. [#virtualbox_dependency] VirtualBox is listed as dependency due to the fact
@@ -99,9 +99,10 @@ provision process will start to show any kind of errors, please try to use
 ``vagrant destroy && vagrant up`` for the process to stat over from a clean
 state.
 
+To double check the merged version of configuration just run ``vagrant config``.
+
 Hint: you have to care for the syntax/semantics at yourself. So, if you get an error while ``vagrant provision``
 your personal.yml is the start point for troubleshooting. Has every entry value? At the moment no empty entries will work.
-
 
 Examples
 --------
