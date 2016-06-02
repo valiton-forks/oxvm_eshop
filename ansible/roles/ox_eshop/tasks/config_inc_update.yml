@@ -34,12 +34,23 @@
 - name: Ensure temporary directory exists
   file: "path={{ eshop_path.source }}/tmp state=directory"
 
+- name: Check if defined vendor directory exists
+  stat: "path={{ eshop.composer.vendor }}"
+  register: vendor_directory_exists
+
 - name: Reset shop
-  shell: "{{ eshop_path.source }}/vendor/bin/reset-shop"
+  shell: "{{ eshop.composer.vendor }}/bin/reset-shop"
   ignore_errors: yes
   register: reset_shop
+  when: vendor_directory_exists.stat.exists
+
+- name: Reset shop if defined vendor directory does not exist
+  shell: "{{ eshop_path.source }}/vendor/bin/reset-shop"
+  ignore_errors: yes
+  register: reset_shop_fallback
+  when: not vendor_directory_exists.stat.exists
 
 - name: Display warning about failed command line setup
   shell: 'true'
   notify: display reset shop error
-  when: "reset_shop.rc != 0"
+  when: "(vendor_directory_exists.stat.exists and reset_shop.rc != 0) or (not vendor_directory_exists.stat.exists and reset_shop_fallback.rc != 0)"

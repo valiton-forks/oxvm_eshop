@@ -56,7 +56,7 @@
     state: absent
 
 - name: Run composer install in shop source directory
-  shell: "cd {{ eshop_path.source }} && {{ eshop.composer.env }} composer install --prefer-{{ eshop.composer.prefer }}"
+  shell: "cd {{ eshop_path.source }} && SHOP_PATH=\"''\" SHOP_TESTS_PATH='../tests' PARTIAL_MODULE_PATHS='null' composer install --prefer-{{ eshop.composer.prefer }}"
   when: not composer_json_in_root.stat.exists
 
 - name: Run composer install in repository root
