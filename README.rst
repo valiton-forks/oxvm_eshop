@@ -239,6 +239,18 @@ Change the default virtual host from ``www.oxideshop.dev`` to
       aliases:
         - www.myproject.dev
 
+Change the display mode of errors
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+By default the `display_errors` option is turned on. To change
+the behavior you can use:
+
+.. code:: yaml
+
+  ---
+  php:
+    display_errors: Off
+
 Change MySQL password
 ^^^^^^^^^^^^^^^^^^^^^
 
