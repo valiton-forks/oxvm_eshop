@@ -72,7 +72,7 @@ eshop:
     prefer: dist
   source:
     repo: https://github.com/OXID-eSales/oxideshop_ce.git
-    version: master
+    version: b-5.3-ce
   sdk:
     path: ~/eshop_sdk
     module_skeleton_generator:
