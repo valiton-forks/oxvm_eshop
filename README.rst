@@ -275,6 +275,18 @@ used to run Selenium tests with the help of
   selenium:
     install: true
 
+Trigger IonCube integration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Trigger `IonCube <http://www.ioncube.com/>`_ integration so that it can be
+used to decode the encoded files.
+
+.. code:: yaml
+
+  ---
+  ioncube:
+    install: true
+
 Customize email monitoring integration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
