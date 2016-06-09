@@ -35,7 +35,7 @@
   file: "path={{ eshop_path.source }}/tmp state=directory"
 
 - name: Reset shop
-  shell: "{{ eshop_path.source }}/vendor/bin/reset-shop"
+  shell: "{{ eshop.composer.vendor }}/bin/reset-shop"
   ignore_errors: yes
   register: reset_shop
 
