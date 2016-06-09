@@ -4,7 +4,10 @@ pwd = File.dirname(File.expand_path(__FILE__))
 
 ENV['BASE_VM_PATH'] = pwd + '/base_vm/'
 ENV['VM_PATH'] = pwd
-ENV['PLAYBOOK'] = 'oxid'
+
+eshop_version = ENV['ESHOP_VERSION'] ? ENV['ESHOP_VERSION'] : '5'
+
+ENV['PLAYBOOK'] = 'oxideshop_v' + eshop_version
 
 create_eshop_shared_folder = Proc.new {
   |config, vm_config|

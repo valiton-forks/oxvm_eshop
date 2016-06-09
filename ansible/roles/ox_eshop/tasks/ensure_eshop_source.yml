@@ -9,5 +9,5 @@
   when: not eshop_source.stat.exists
 
 - name: Transfer eshop clone to shared folder
-  shell: rsync -ra /opt/oe/. {{ eshop_target_path }} warn=no
+  shell: rsync -ra /opt/oe/. {{ eshop.path.root }} warn=no
   when: not eshop_source.stat.exists

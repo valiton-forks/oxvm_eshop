@@ -1,0 +1,6 @@
+---
+eshop_path:
+    composer: "{{ eshop_target_path }}"
+eshop:
+  source:
+    version: master
