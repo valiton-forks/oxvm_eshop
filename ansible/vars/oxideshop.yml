@@ -55,6 +55,7 @@ selenium:
 eshop_path:
   root: "{{ eshop_target_path }}"
   source: "{{ eshop_target_path }}/source"
+  tests: "{{ eshop_target_path }}/tests"
   library: "{{ eshop_target_path }}/library"
   modules: "{{ eshop_target_path }}/source/modules"
 eshop_target_path: "{{ vagrant_local.vm.app_shared_folder.target }}"
@@ -63,7 +64,7 @@ eshop:
     utf_mode: 0
   composer:
     clean_vendors: true
-    env: "SHOP_PATH=\"''\" SHOP_TESTS_PATH='../tests' PARTIAL_MODULE_PATHS='null'"
+    env: "SHOP_PATH=\"'{{ eshop_path.source }}'\" SHOP_TESTS_PATH='{{ eshop_path.tests }}' PARTIAL_MODULE_PATHS='null'"
     root: "{{ eshop_path.root }}"
     vendor: "{{ eshop_path.source }}/vendor"
     cache_url: ~
