@@ -5,6 +5,7 @@ vagrant_local:
     hostname: oxideshop.dev
     aliases:
       - www.oxideshop.dev
+      - localhost
     app_shared_folder:
       source: oxideshop
       target: /var/www/oxideshop
