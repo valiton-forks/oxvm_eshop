@@ -703,4 +703,7 @@ Selenium tests do not run after VM was destroyed: error "Session not started"
 -----------------------------------------------------------------------------
 
 Restart selenium server is needed and can be done with command:
-sudo /etc/init.d/selenium restart
+
+.. code:: bash
+
+    sudo /etc/init.d/selenium restart
