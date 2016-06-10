@@ -12,6 +12,12 @@
 
 # Ansible
 personal.yml
+ansible/*.retry
 
 # Application specific
 oxideshop/
+
+# PHPStorm
+/.idea/
+/.phpstorm-oxid.meta.php
+/tmp/
