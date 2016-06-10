@@ -698,3 +698,9 @@ The example of error message:
   with TTY.
 
 Please check answers on stackoverflow for your specific case: http://stackoverflow.com/questions/23633276/vagrant-is-attempting-to-interface-with-the-ui-in-a-way-that-requires-a-tty
+
+Selenium tests do not run after VM was destroyed: error "Session not started"
+-----------------------------------------------------------------------------
+
+Restart selenium server is needed and can be done with command:
+sudo /etc/init.d/selenium restart
