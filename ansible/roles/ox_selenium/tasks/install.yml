@@ -18,6 +18,7 @@
       - xvfb
       - x11vnc
       - openjdk-7-jre-headless
+      - rng-tools
 
   - name: Prepare placeholder for selenium
     become: yes
