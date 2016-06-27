@@ -4,7 +4,10 @@
     apt: name=firefox state=present
 
   - name: Download fixed firefox version
-    shell: "wget -O /tmp/firefox.deb {{ selenium.package.firefox.deb_url }} creates=/tmp/firefox.deb"
+    get_url:
+      dest: /tmp/firefox.deb
+      url: "{{ selenium.package.firefox.deb_url }}"
+      checksum: "{{ selenium.package.firefox.deb_checksum }}"
 
   - name: Install fixed firefox version
     become: yes
@@ -32,7 +35,10 @@
 
   - name: Download fixed selenium version
     become: yes
-    shell: "wget -O /opt/selenium/selenium.jar {{ selenium.package.self.jar_url }} creates=/opt/selenium/selenium.jar"
+    get_url:
+      dest: /opt/selenium/selenium.jar
+      url: "{{ selenium.package.self.jar_url }}"
+      checksum: "{{ selenium.package.self.jar_checksum }}"
 
   - name: Add selenium init script
     become: yes
