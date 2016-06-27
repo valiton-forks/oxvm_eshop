@@ -20,6 +20,12 @@
       - openjdk-7-jre-headless
       - rng-tools
 
+  - name: Disable screensaver
+    become: yes
+    apt:
+      name: xscreensaver
+      state: absent
+
   - name: Prepare placeholder for selenium
     become: yes
     file: path=/opt/selenium state=directory
