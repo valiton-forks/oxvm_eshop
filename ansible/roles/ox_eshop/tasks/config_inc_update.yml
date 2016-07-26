@@ -31,6 +31,20 @@
     - {'pattern': '<sCompileDir.*>', 'value': "{{ eshop_path.source }}/tmp"}
     - {'pattern': '<iUtfMode.*>', 'value': "{{ eshop.config.utf_mode }}"}
 
+- name: Update for master/slave configuration
+  shell: "sed -i \"s|{{ item.pattern }}|{{ item.value }}|\" {{ eshop.config.path }}"
+  with_items:
+    - {pattern: "$this->aSlaveHosts.*", value: "$this->aSlaveHosts = array('{{ eshop.config.mysql.replication.slave_hosts | join(\"', '\") }}');"}
+    - {pattern: "$this->iMasterSlaveBalance.*", value: "$this->iMasterSlaveBalance = {{ eshop.config.mysql.replication.balance }};"}
+  when: eshop.config.mysql.replication.slave_hosts and eshop.config.mysql.replication.balance
+
+- name: Disable master/slave configuration
+  shell: "sed -i \"s|{{ item.pattern }}|{{ item.value }}|\" {{ eshop.config.path }}"
+  with_items:
+    - {pattern: "$this->aSlaveHosts.*", value: "$this->aSlaveHosts = null;"}
+    - {pattern: "$this->iMasterSlaveBalance.*", value: "$this->iMasterSlaveBalance = 0;"}
+  when: not (eshop.config.mysql.replication.slave_hosts and eshop.config.mysql.replication.balance)
+
 - name: Ensure temporary directory exists
   file: "path={{ eshop_path.source }}/tmp state=directory"
 
