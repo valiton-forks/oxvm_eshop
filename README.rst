@@ -287,6 +287,10 @@ used to run Selenium tests with the help of
   selenium:
     install: true
 
+Together with Selenium, a vnc server is installed in order to connect via remote
+display. Suitable clients are e.g. ``vinagre`` on Linux or the built-in vnc
+client of OS X.
+
 Trigger IonCube integration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
