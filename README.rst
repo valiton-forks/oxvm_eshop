@@ -32,7 +32,7 @@ Before proceeding with `Quick start`_ please ensure that the
 Dependencies
 ------------
 
-* `Vagrant <https://www.vagrantup.com/downloads.html>`_ (>=1.7)
+* `Vagrant <https://www.vagrantup.com/downloads.html>`_ (>=1.8.6)
 * `VirtualBox <https://www.virtualbox.org/>`_ [#virtualbox_dependency]_ (>=4.2)
 * `Git <https://git-scm.com/downloads>`_
 * `OpenSSH <http://www.openssh.com/>`_
