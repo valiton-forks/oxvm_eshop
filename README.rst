@@ -711,3 +711,29 @@ Restart selenium server is needed and can be done with command:
 .. code:: bash
 
     sudo /etc/init.d/selenium restart
+
+"Trigger default Varnish configuration validation" task fails
+-------------------------------------------------------------
+
+This error is caused due to missing Varnish configuration. It is
+missing by intention as it's not distributed freely and is a part
+of our paid product. In order to obtain the configuration please
+send an e-mail to ee-pe-repo@oxid-esales.com.
+
+When you receive Varnish configuration files place them at
+``<your_oxideshop_directory>/library/ReverseProxy/Varnish/``.
+The following files will be used by default:
+
+* ``default.vcl`` - main configuration
+* ``servers_conf.vcl.varnish_4.dist`` - list of servers
+
+In case you have different path/files to configuration you can
+override the values inside ``personal.yml`` file:
+
+* ``varnish.default_config.source`` - to point to ``default.vcl`` equivalent
+* ``varnish.servers_config.source`` - to point to ``servers_conf.vcl.varnish_4.dist`` equivalent
+
+Keep in mind that the above listed configuration items looks for files
+inside the VM, not the host machine, so it should start with the path
+which is configured to be used as the shared folder for OXID eShop, e.g.
+the default place would start as ``/var/www/oxideshop/library/ReverseProxy/Varnish/``.
