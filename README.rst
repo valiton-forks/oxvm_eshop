@@ -669,16 +669,16 @@ To install and enable Zend Guard Loader PHP extension manually inside the VM:
   vagrant ssh
 
   # From guest (virtual machine)
-  cd /usr/lib/php5/20121212/
-  sudo wget https://github.com/OXID-eSales/oxvm_assets/blob/master/zend-loader-php5.5-linux-x86_64.tar.gz?raw=true -O zend.tar.gz
+  cd /usr/lib/php/20131226/
+  sudo wget https://github.com/OXID-eSales/oxvm_assets/blob/master/zend-loader-php5.6-linux-x86_64.tar.gz?raw=true -O zend.tar.gz
   sudo tar zxvf zend.tar.gz
-  sudo cp zend-loader-php5.5-linux-x86_64/ZendGuardLoader.so ./
-  sudo cp zend-loader-php5.5-linux-x86_64/opcache.so ./zend_opcache.so
-  cd /etc/php5/mods-available/
+  sudo cp zend-loader-php5.6-linux-x86_64/ZendGuardLoader.so ./
+  sudo cp zend-loader-php5.6-linux-x86_64/opcache.so ./zend_opcache.so
+  cd /etc/php/5.6/mods-available/
   sudo sh -c 'echo "zend_extension=ZendGuardLoader.so" > zend.ini'
   sudo sh -c 'echo "zend_extension=zend_opcache.so" >> zend.ini'
-  sudo php5dismod opcache
-  sudo php5enmod zend
+  sudo phpdismod opcache
+  sudo phpenmod zend
   sudo service apache2 restart
 
 Keep in mind that different PHP version needs different version of Zend Guard
