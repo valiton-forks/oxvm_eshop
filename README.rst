@@ -113,6 +113,20 @@ cloning this repository.
 One can just copy and paste the example snippets from the list below to the
 ``personal.yml`` file at the root of this repository.
 
+Use older eShop version
+^^^^^^^^^^^^^^^^^^^^^^^
+
+The current VM configuration is optimized to work with latest version of OXID eShop: ``v6.0-beta``.
+In order to use VM with an older OXID eShop version please make the following adjustments to the configuration
+file:
+
+.. code:: yaml
+
+  ---
+  eshop:
+    composer:
+      vendor: "{{ eshop_path.source }}/vendor"
+
 Change PHP version
 ^^^^^^^^^^^^^^^^^^
 
