@@ -737,3 +737,17 @@ Keep in mind that the above listed configuration items looks for files
 inside the VM, not the host machine, so it should start with the path
 which is configured to be used as the shared folder for OXID eShop, e.g.
 the default place would start as ``/var/www/oxideshop/library/ReverseProxy/Varnish/``.
+
+Composer returns "ProcessTimedOutException"
+-------------------------------------------
+
+In case there are Internet connection issues composer might take longer time to download
+various packages and hit ``ProcessTimeOutException``. In order to avoid that configuration can
+be updated to increase this time-out:
+
+.. code:: yaml
+
+    php:
+      composer:
+        timeout: 3000
+
