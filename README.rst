@@ -130,6 +130,39 @@ file:
 Don't forget to follow the installation instructions which are provided with the eShop,
 e.g. version ``5.3`` requires some `additional steps <https://github.com/OXID-eSales/oxideshop_ce/tree/b-5.3-ce#installation>`_ before the provision process. These steps might include (but is not limited to) addition of flow theme and demodata files. 
 
+Use NFS for shared-folder
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If `LXC <https://en.wikipedia.org/wiki/LXC>`_ is not available on your host system the best (so far) method to
+share your application folder would be to use `NFS <https://en.wikipedia.org/wiki/Network_File_System>`_.
+
+In order to trigger NFS usage inside the VM one has to add the following configuration:
+
+.. code:: yaml
+
+  ---
+  vagrant_local:
+    vm:
+      app_shared_folder:
+        sync_type: nfs
+
+Beware that in order for this to work your host system must support NFS server:
+
+* OS X/macOS has this integrated out-of-the-box
+* Various GNU/Linux distributions might require additional setup:
+
+  * `Ubuntu <https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nfs-mount-on-ubuntu-16-04>`_
+  * `Debian <https://wiki.debian.org/NFSServerSetup>`_
+  * `RHEL/CentOS <https://www.howtoforge.com/tutorial/setting-up-an-nfs-server-and-client-on-centos-7/>`_
+  * `ArchLinux <https://wiki.archlinux.org/index.php/NFS>`_
+
+Be aware that NFS also has it's own limitations:
+
+* No server is available for Microsoft Windows
+* NFS uses network stack to share data
+* NFS does not propagate file change events to the guest system
+* Sometimes NFS is complicated to setup/troubleshoot in a non-standard environment
+
 Change PHP version
 ^^^^^^^^^^^^^^^^^^
 
