@@ -127,6 +127,9 @@ file:
     composer:
       vendor: "{{ eshop_path.source }}/vendor"
 
+Don't forget to follow the installation instructions which are provided with the eShop,
+e.g. version ``5.3`` requires some `additional steps <https://github.com/OXID-eSales/oxideshop_ce/tree/b-5.3-ce#installation>`_ before the provision process. These steps might include (but is not limited to) addition of flow theme and demodata files. 
+
 Change PHP version
 ^^^^^^^^^^^^^^^^^^
 
@@ -568,6 +571,10 @@ In order to prepare VM for usage of eShop packages please follow the steps below
 If the above steps were done **after** the creation/provision of VM please make
 sure to re-run ``vagrant provision`` command for provision process to make
 necessary changes.
+
+Don't forget that packages usally contain older version of eShop which requires
+`additional work <https://github.com/OXID-eSales/oxvm_eshop#use-older-eshop-version>`_
+besides the work which will be done by the provision process.
 
 **Directory structure overview of eShop packages placed for the VM**:
 
