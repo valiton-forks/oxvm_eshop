@@ -92,7 +92,7 @@ All configuration changes should be done by overriding variables from:
 
 These overridden values must be placed in ``personal.yml``
 [#personal_git_ignore]_ file at the root level of current repository.
-
+_
 For the overridden values to take effect please run ``vagrant provision``. If
 the changes are related to the shared folder use ``vagrant reload``. In case the
 provision process will start to show any kind of errors, please try to use
@@ -128,7 +128,7 @@ file:
       vendor: "{{ eshop_path.source }}/vendor"
 
 Don't forget to follow the installation instructions which are provided with the eShop,
-e.g. version ``5.3`` requires some `additional steps <https://github.com/OXID-eSales/oxideshop_ce/tree/b-5.3-ce#installation>`_ before the provision process. These steps might include (but is not limited to) addition of flow theme and demodata files. 
+e.g. version ``5.3`` requires some `additional steps <https://github.com/OXID-eSales/oxideshop_ce/tree/b-5.3-ce#installation>`_ before the provision process. These steps might include (but is not limited to) addition of flow theme and demodata files.
 
 Use NFS for shared-folder
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -580,6 +580,39 @@ Guides
 ======
 
 List of guides for working with VM:
+
+How to update the VM
+--------------------
+
+* Open VM directory:
+
+.. code:: bash
+
+  cd oxvm_eshop
+
+* Destroy old VM:
+
+.. code:: bash
+
+  vagrant destroy
+
+* Update eShop VM:
+
+.. code:: bash
+
+  git pull
+
+* Update Base VM:
+
+.. code:: bash
+
+  git submodule update --recursive
+
+* Start VM:
+
+.. code:: bash
+
+  vagrant up
 
 Use eShop packages instead of repositories
 ------------------------------------------
