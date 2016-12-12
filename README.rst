@@ -33,7 +33,7 @@ Dependencies
 ------------
 
 * `Vagrant <https://www.vagrantup.com/downloads.html>`_ (>=1.8.6)
-* `VirtualBox <https://www.virtualbox.org/>`_ [#virtualbox_dependency]_ (>=4.2, except 5.1.8, see `#29 <https://github.com/OXID-eSales/oxvm_eshop/issues/29>`_)
+* `VirtualBox <https://www.virtualbox.org/>`_ [#virtualbox_dependency]_ (>=4.2, except 5.1.8, see `#29 <https://github.com/OXID-eSales/oxvm_eshop/issues/29>`_; Windows users see `#32 <https://github.com/OXID-eSales/oxvm_eshop/issues/32>`__)
 * `Git <https://git-scm.com/downloads>`_
 * `OpenSSH <http://www.openssh.com/>`_
 * Vagrant plugins:
