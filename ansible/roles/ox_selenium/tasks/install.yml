@@ -23,6 +23,10 @@
       - openjdk-7-jre-headless
       - rng-tools
 
+  - name: Remove systemd-services
+    become: yes
+    apt: name=systemd-services state=absent
+
   - name: Disable screensaver
     become: yes
     apt:
