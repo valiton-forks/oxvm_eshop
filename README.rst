@@ -692,6 +692,27 @@ In case the following two packages were received:
   value can be found in:
   `Change shared folder path <#change-shared-folder-path>`_ .
 
+How to provision individual parts
+---------------------------------
+
+In order to provision only individual part of the VM one can simply use
+``ANSIBLE_TAGS`` environment variable. Consider the following examples:
+
+.. code:: bash
+
+  # Provision PHP and MySQL parts only
+  ANSIBLE_TAGS=php,mysql vagrant provision
+
+  # Provision OXID eShop related part only
+  ANSIBLE_TAGS=eshop vagrant provision
+
+Ansible tags are marked inside ``roles`` directories. To get a list of them try running the following command:
+
+.. code:: bash
+
+  grep -r -A 2 --include="*.yml" "tags\:" .
+
+
 Troubleshooting
 ===============
 
