@@ -68,6 +68,7 @@ eshop_target_path: "{{ vagrant_local.vm.app_shared_folder.target }}"
 eshop:
   config:
     utf_mode: 1
+    use_ssl: false
   composer:
     clean_vendors: true
     env: "SHOP_PATH=\"'{{ eshop_path.source }}'\" SHOP_TESTS_PATH='{{ eshop_path.tests }}' PARTIAL_MODULE_PATHS='null'"

@@ -234,6 +234,22 @@ In order to turn on the UTF-8 mode:
 
 This change will not affect the already configured shop [#turn_on_utf_mode]_ .
 
+Use SSL
+^^^^^^^
+
+By default the shop is served using regular HTTP protocol. In order to use
+SSL use the following configuration snippet:
+
+.. code:: yaml
+
+  ---
+  eshop:
+    config:
+      use_ssl: 1
+
+This configuration will automatically update ``config.inc.php`` file to contain
+necessary changes for using SSL.
+
 Change shared folder path
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
