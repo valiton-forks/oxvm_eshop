@@ -1,6 +1,12 @@
 ---
 - include: install.yml
   when: eshop.sdk.module_skeleton_generator.install
+  tags:
+    - eshop
+    - eshop_sdk
 
 - include: uninstall.yml
   when: not eshop.sdk.module_skeleton_generator.install
+  tags:
+    - eshop
+    - eshop_sdk

@@ -1,5 +1,15 @@
 ---
 - include: ensure_eshop_source.yml
+  tags:
+    - eshop
+    - eshop_source
+
 - include: handle_composer.yml
+  tags:
+    - eshop
+    - eshop_composer
+
 - include: config_inc_update.yml
-  tags: ['config_inc']
+  tags:
+    - eshop
+    - eshop_config
