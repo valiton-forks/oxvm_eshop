@@ -47,6 +47,8 @@ Dependencies
 Quick start
 -----------
 
+**Note for Windows users**: Use console with **Administrator privileges** to run vagrant commands! 
+
 * Clone [#recursive_clone]_ out current repository:
 
 .. code:: bash
@@ -59,7 +61,7 @@ Quick start
 
   cd oxvm_eshop
   vagrant up
-
+  
 * After successful provision process use the following links to:
 
   * Open OXID eShop: http://www.oxideshop.dev/
