@@ -871,6 +871,23 @@ In case there are Internet connection issues composer might take longer time to 
 various packages and hit ``ProcessTimeOutException``. In order to avoid that configuration can
 be updated to increase this time-out:
 
+On Windows machines, fails to install vagrant-hostmanager plugin
+----------------------------------------------------------------
+
+Using user name with space in it leads to an error message: 
+
+::
+
+  The directory where plugins are installed (the Vagrant home directory)
+  has a space in it. On Windows, there is a bug in Ruby when compiling
+  plugins into directories with spaces. Please move your Vagrant home
+  directory to a path without spaces and try again.
+
+Possible solution: 
+
+- Install Vagrant in a directory which has no spaces in the path.
+- Define Windows Environment Variable ``%VAGRANT_HOME%`` to hold path to the directory ``Path_to_Vagrant\bin``
+
 .. code:: yaml
 
     php:
