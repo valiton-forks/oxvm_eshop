@@ -871,6 +871,12 @@ In case there are Internet connection issues composer might take longer time to 
 various packages and hit ``ProcessTimeOutException``. In order to avoid that configuration can
 be updated to increase this time-out:
 
+.. code:: yaml
+
+    php:
+      composer:
+        timeout: 3000
+
 On Windows machines, fails to install vagrant-hostmanager plugin
 ----------------------------------------------------------------
 
@@ -887,10 +893,3 @@ Possible solution:
 
 - Install Vagrant in a directory which has no spaces in the path.
 - Define Windows Environment Variable ``%VAGRANT_HOME%`` to hold path to the directory ``Path_to_Vagrant\bin``
-
-.. code:: yaml
-
-    php:
-      composer:
-        timeout: 3000
-
