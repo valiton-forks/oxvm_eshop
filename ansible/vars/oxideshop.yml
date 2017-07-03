@@ -13,7 +13,7 @@ server:
     - git
 apache:
   docroot: "{{ eshop_path.source }}"
-  servername: "{{ vagrant_local.vm.aliases.0 }}"
+  servername: "{{ vagrant_local.vm.hostname }}"
 mysql:
   root_password: oxid
   database: oxid
