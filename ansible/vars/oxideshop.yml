@@ -42,13 +42,6 @@ adminer:
   install: true
 adminer_editor:
   install: true
-varnish:
-  default_config:
-    source: "{{ eshop_path.library }}/ReverseProxy/Varnish/default.vcl"
-    target: /etc/varnish/default.vcl
-  servers_config:
-    source: "{{ eshop_path.library }}/ReverseProxy/Varnish/servers_conf.vcl.varnish_4.dist"
-    target: /etc/varnish/servers_conf.vcl
 selenium:
   install: false
   package:

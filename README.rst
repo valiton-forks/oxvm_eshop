@@ -61,7 +61,7 @@ Quick start
 
   cd oxvm_eshop
   vagrant up
-  
+
 * After successful provision process use the following links to:
 
   * Open OXID eShop: http://www.oxideshop.dev/
@@ -333,14 +333,147 @@ Change the default MySQL user password from ``oxid`` to ``secret``.
 Trigger Varnish installation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Trigger `Varnish <https://www.varnish-cache.org/>`_ [#varnish_usage]_
-installation so that it can be used within eShop.
+Trigger `Varnish <https://www.varnish-cache.org/>`_ installation so that it can
+be used within OXID eShop.
 
 .. code:: yaml
 
   ---
   varnish:
     install: true
+
+The above change will only trigger installation of Varnish with it's distributed
+default configuration (``default.vcl``) which is not compatible with OXID eShop.
+
+In order to make Varnish compatible with OXID eShop the following items must
+be done:
+
+* Download ``oxid-esales/varnish-configuration`` composer package;
+* Copy the ``VCL`` files into the system where Varnish is used;
+* Adapt ``servers_conf.vcl`` file to match system environment;
+* Restart Varnish service;
+* Update OXID eShop ``config.inc.php``;
+* Update OXID eShop settings in admin area.
+
+The above steps are described with more detail in the topics below:
+
+Download package
+~~~~~~~~~~~~~~~~
+
+Because ``oxid-esales/varnish-configuration`` is a ``composer`` package and
+``composer`` tool is available for VM by default we could use the following
+OXID eShop version independent way to download the package:
+
+.. code::
+
+  # Register private password protected repository
+  composer global config repositories.oxid-esales/varnish-configuration \
+    composer https://packages.oxid-esales.com/varnish/
+
+  # Download the actual package
+  composer global require oxid-esales/varnish-configuration
+
+Keep in mind that ``composer`` will ask for username and password as the package
+is available only to users who have bought the **performance package**
+(https://www.oxid-esales.com/performance/). Please use the credentials which
+were provided during the purchase.
+
+By default a configuration which is compatible with Varnish ``4.0.x`` will be
+provided. In order to see which other versions are available as well, please use
+the following command:
+
+.. code::
+
+  composer global show --all oxid-esales/varnish-configuration
+
+And to download the package with selected version, e.g. ``3.0.0``:
+
+.. code::
+
+  composer global require oxid-esales/varnish-configuration:v3.0.0
+
+Install package
+~~~~~~~~~~~~~~~
+
+After the package has been downloaded into global ``vendor`` directory as
+described by the topic above it becomes possible to transfer configuration
+files into the system by using these commands:
+
+.. code::
+
+  sudo cp $HOME/.composer/vendor/oxid-esales/varnish-configuration/default.vcl \
+    /etc/varnish/
+
+  sudo cp $HOME/.composer/vendor/oxid-esales/varnish-configuration/servers_conf.vcl.dist \
+    /etc/varnish/servers_conf.vcl
+
+Adapt configuration
+~~~~~~~~~~~~~~~~~~~
+
+There are two mandatory placeholders which need to be updated inside the
+``servers_conf.vcl`` file:
+
+* ``<my_shop_hostname>`` - a valid host which could be used to communicate with
+  the shop internaly;
+* ``<my_shop_IP>`` - an inbound external IP address which has rights to trigger
+  cache invalidation.
+
+The following commands could be used with a default configuration of VM to
+replace the placeholder values with suitable ones:
+
+.. code::
+
+  sudo sed -i "s/<my_shop_hostname>/127.0.0.1/g" /etc/varnish/servers_conf.vcl
+
+  sudo sed -i "s/<my_shop_IP>/$(ip addr | grep eth1 | tail -n 1 \
+    | grep -oE "(\b([0-9]{1,3}\.){3}[0-9]{1,3}\b)" | head -n 1)/g" \
+    /etc/varnish/servers_conf.vcl
+
+Restart service
+~~~~~~~~~~~~~~~
+
+After adapting the configuration files it's now possible to restart Varnish
+service in order for the updated configuration to take effect:
+
+.. code::
+
+  sudo /etc/init.d/varnish restart
+
+Update OXID eShop configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Because Varnish uses ``6081`` port by default this needs to be reflected in
+the configuration file ``/var/www/oxideshop/source/config.inc.php``.
+
+If e.g. the hostname was used as ``oxideshop.dev`` the following change must be
+applied, from:
+
+.. code::
+
+  $this->sShopURL = 'http://oxideshop.dev';
+
+into:
+
+.. code::
+
+  $this->sShopURL = 'http://oxideshop.dev:6081';
+
+Update admin area
+~~~~~~~~~~~~~~~~~
+
+After all of the steps above one must apply necessary changes in the admin
+area of the OXID eShop:
+
+* Visit http://oxideshop.dev:6081/admin/
+* Choose ``Master settings``
+* Select ``Core settings``
+* Switch to ``Caching``
+* Expand ``Reverse proxy``
+* Tick ``Enable caching``
+
+To check if Reverse proxy cache is active, please click
+``Test Reverse Proxy's availability``. In case of successful configuration
+the following green colored message will appear "Reverse Proxy test succeed".
 
 Trigger Selenium installation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -494,11 +627,6 @@ In order to disable it please use the following snippet:
   access. In order to overcome these limits one has to create a github token,
   which could be done as described in:
   https://help.github.com/articles/creating-an-access-token-for-command-line-use/
-.. [#varnish_usage] Varnish can only be used with the eShop EE version and with
-  purchased "performance pack" (https://www.oxid-esales.com/performance/). Keep
-  in mind that the default Varnish port 6081 is being used to access the shop.
-  This should also be reflected in ``config.inc.php`` file as ``sShopURL``
-  parameter, e.g. http://www.oxideshop.dev:6081/ .
 
 SDK
 ===
@@ -837,32 +965,6 @@ Restart selenium server is needed and can be done with command:
 .. code:: bash
 
     sudo /etc/init.d/selenium restart
-
-"Trigger default Varnish configuration validation" task fails
--------------------------------------------------------------
-
-This error is caused due to missing Varnish configuration. It is
-missing by intention as it's not distributed freely and is a part
-of our paid product. In order to obtain the configuration please
-send an e-mail to ee-pe-repo@oxid-esales.com.
-
-When you receive Varnish configuration files place them at
-``<your_oxideshop_directory>/library/ReverseProxy/Varnish/``.
-The following files will be used by default:
-
-* ``default.vcl`` - main configuration
-* ``servers_conf.vcl.varnish_4.dist`` - list of servers
-
-In case you have different path/files to configuration you can
-override the values inside ``personal.yml`` file:
-
-* ``varnish.default_config.source`` - to point to ``default.vcl`` equivalent
-* ``varnish.servers_config.source`` - to point to ``servers_conf.vcl.varnish_4.dist`` equivalent
-
-Keep in mind that the above listed configuration items looks for files
-inside the VM, not the host machine, so it should start with the path
-which is configured to be used as the shared folder for OXID eShop, e.g.
-the default place would start as ``/var/www/oxideshop/library/ReverseProxy/Varnish/``.
 
 Composer returns "ProcessTimedOutException"
 -------------------------------------------
