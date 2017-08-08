@@ -209,6 +209,21 @@ To download PHP source run this command with full php version specified:
 
   phpbrew download [phpversion] && tar jxf ~/.phpbrew/distfiles/php-[phpversion].tar.bz2 -C ~/.phpbrew/build/
 
+Change MySQL version
+^^^^^^^^^^^^^^^^^^^^
+
+MySQL versioning is not yet automated via Ansible, in order to change the
+version of MySQL service, please apply the following commands after calling
+``vagrant ssh``:
+
+.. code:: bash
+
+  wget http://dev.mysql.com/get/mysql-apt-config_0.8.7-1_all.deb
+  sudo dpkg -i mysql-apt-config_0.8.7-1_all.deb
+  # Choose MySQL version to install
+  sudo apt-get update
+  sudo apt-get install mysql-server
+
 Change VM provider
 ^^^^^^^^^^^^^^^^^^
 
