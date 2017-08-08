@@ -179,6 +179,17 @@ Requested version will be either built on the fly or downloaded from assets [#as
   php:
     version: 5.3
 
+Keep in mind that by default this setting only affects the CLI interface of PHP,
+in order to change the PHP version for Apache, please apply the following
+additional commands:
+
+.. code:: bash
+
+  sudo cp /etc/apache2/mods-available/php5.6.conf /etc/apache2/mods-available/php5.conf
+  sudo a2dismod php5.6
+  sudo a2enmod php5
+  phpswitch 5.3 # or 5.4, 5.5, 5.6, 7.0, 7.1
+
 To disable downloading of cached versions from assets repository, set ``cache_repository`` to empty value.
 Alternatively it is possible to build your own PHP packages and place them into any svn repository.
 
