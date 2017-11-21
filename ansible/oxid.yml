@@ -9,8 +9,3 @@
     - [../personal.yml, ~/.personal_ansible_vm.yml, ../project.yml, vars/oxideshop.yml]
   roles:
     - common
-    - ox_selenium
-    - ox_eshop
-    - ox_eshop-sdk
-    - ox_eshop-sdk-certification_tools
-    - ox_eshop-sdk-skeleton_generator

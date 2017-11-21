@@ -2,15 +2,17 @@
 vagrant_local:
   vm:
     name: oxideshop
-    hostname: oxideshop.dev
+    hostname: oxideshop.local
     aliases:
-      - www.oxideshop.dev
+      - www.oxideshop.local
     app_shared_folder:
       source: oxideshop
       target: /var/www/oxideshop
 server:
   packages:
     - git
+landing:
+  install: false
 apache:
   docroot: "{{ eshop_path.source }}"
   servername: "{{ vagrant_local.vm.hostname }}"
@@ -42,43 +44,7 @@ adminer:
   install: true
 adminer_editor:
   install: true
-selenium:
-  install: false
-  package:
-    firefox:
-      deb_url: https://github.com/OXID-eSales/oxvm_assets/raw/master/firefox-mozilla-build_31.0-0ubuntu1_amd64.deb
-      deb_checksum: sha256:41c3a02d304a26e10c237516c773ba51d93eb2b11e5a82292bb47b26bb2ba859
-    self:
-      jar_url: https://github.com/OXID-eSales/oxvm_assets/raw/master/selenium-server-standalone-2.47.1.jar
-      jar_checksum: sha256:45665f3bb4dffb668981258faff91823db4a1f6250fd24fd6698ec159a4aeb8a
 eshop_path:
-  root: "{{ eshop_target_path }}"
-  source: "{{ eshop_target_path }}/source"
-  tests: "{{ eshop_target_path }}/tests"
-  library: "{{ eshop_target_path }}/library"
-  modules: "{{ eshop_target_path }}/source/modules"
-eshop_target_path: "{{ vagrant_local.vm.app_shared_folder.target }}"
-eshop:
-  config:
-    utf_mode: 1
-    use_ssl: false
-  composer:
-    clean_vendors: true
-    env: "SHOP_PATH=\"'{{ eshop_path.source }}'\" SHOP_TESTS_PATH='{{ eshop_path.tests }}' PARTIAL_MODULE_PATHS='null'"
-    root: "{{ eshop_path.root }}"
-    vendor: "{{ eshop_target_path }}/vendor"
-    cache_url: ~
-    json_source_url: https://raw.githubusercontent.com/OXID-eSales/oxideshop_ce/b-5.2-ce/source/composer.json
-    lock_source_url: https://raw.githubusercontent.com/OXID-eSales/oxideshop_ce/b-5.2-ce/source/composer.lock
-    prefer: dist
-  source:
-    repo: https://github.com/OXID-eSales/oxideshop_ce.git
-    version: stable-master
-  sdk:
-    path: ~/eshop_sdk
-    module_skeleton_generator:
-      install: true
-      repo: https://github.com/OXID-eSales/module_skeleton_generator.git
-    module_certification_tools:
-      install: true
-      repo: https://github.com/OXID-eSales/module_certification_tools.git
+  root: "{{ vagrant_local.vm.app_shared_folder.target }}"
+  source: "{{ vagrant_local.vm.app_shared_folder.target }}/source"
+
