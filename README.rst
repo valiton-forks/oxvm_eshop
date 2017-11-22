@@ -64,8 +64,8 @@ Quick start
 
 * After successful provision process use the following links to:
 
-  * Open OXID eShop: http://www.oxideshop.dev/
-  * Access admin area: http://www.oxideshop.dev/admin/
+  * Open OXID eShop: http://www.oxideshop.local/
+  * Access admin area: http://www.oxideshop.local/admin/
 
     * Username: ``admin``
     * Password: ``admin``
@@ -322,8 +322,8 @@ to ``http://de.archive.ubuntu.com/ubuntu/``.
 Change virtual host
 ^^^^^^^^^^^^^^^^^^^
 
-Change the default virtual host from ``www.oxideshop.dev`` to
-``www.myproject.dev``.
+Change the default virtual host from ``www.oxideshop.local`` to
+``www.myproject.local``.
 
 .. code:: yaml
 
@@ -331,7 +331,7 @@ Change the default virtual host from ``www.oxideshop.dev`` to
   vagrant_local:
     vm:
       aliases:
-        - www.myproject.dev
+        - www.myproject.local
 
 Change the display mode of errors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -471,18 +471,18 @@ Update OXID eShop configuration
 Because Varnish uses ``6081`` port by default this needs to be reflected in
 the configuration file ``/var/www/oxideshop/source/config.inc.php``.
 
-If e.g. the hostname was used as ``oxideshop.dev`` the following change must be
+If e.g. the hostname was used as ``oxideshop.local`` the following change must be
 applied, from:
 
 .. code::
 
-  $this->sShopURL = 'http://oxideshop.dev';
+  $this->sShopURL = 'http://oxideshop.local';
 
 into:
 
 .. code::
 
-  $this->sShopURL = 'http://oxideshop.dev:6081';
+  $this->sShopURL = 'http://oxideshop.local:6081';
 
 Update admin area
 ~~~~~~~~~~~~~~~~~
@@ -490,7 +490,7 @@ Update admin area
 After all of the steps above one must apply necessary changes in the admin
 area of the OXID eShop:
 
-* Visit http://oxideshop.dev:6081/admin/
+* Visit http://oxideshop.local:6081/admin/
 * Choose ``Master settings``
 * Select ``Core settings``
 * Switch to ``Caching``
@@ -535,16 +535,16 @@ Customize email monitoring integration
 
 Integration of `Mailhog <https://github.com/mailhog/MailHog>`_ allows to monitor
 e-mail activity from the eShop. List of e-mails could be seen at:
-http://www.oxideshop.dev/mail/
+http://www.oxideshop.local/mail/
 
 Possible configuration options for Mailhog:
 
 * ``web_port`` - web UI port (``8025`` is the default value which means that the
-  UI can be accessed by the following URL: http://www.oxideshop.dev:8025/)
+  UI can be accessed by the following URL: http://www.oxideshop.local:8025/)
 * ``smtp_port`` - SMTP server port (``1025`` is the default value)
 * ``web_alias`` - an URL alias for the default virtual host to act as a proxy
   for web UI of mailhog (``/mail/`` is the default value which means that the UI
-  can be access by the following URL: http://www.oxideshop.dev/mail/)
+  can be access by the following URL: http://www.oxideshop.local/mail/)
 
 An example configuration which changes web UI port to ``8024``, SMTP port to
 ``1026`` and alias to ``/emails/``:
@@ -572,12 +572,12 @@ Customize MySQL administration web app integration
 
 Integration of `Adminer <https://github.com/vrana/adminer>`_ allows to access
 MySQL administrative tasks and data through web alias ``adminer`` at:
-http://www.oxideshop.dev/adminer/
+http://www.oxideshop.local/adminer/
 
 Integration of
 `Adminer editor <https://github.com/vrana/adminer/tree/master/editor>`_ allows
 to access and modify MySQL data through web alias ``adminer_editor`` at:
-http://www.oxideshop.dev/adminer_editor/
+http://www.oxideshop.local/adminer_editor/
 
 Possible configuration options for **Adminer** and **Adminer editor**:
 
@@ -585,8 +585,8 @@ Possible configuration options for **Adminer** and **Adminer editor**:
   application
 * ``web_alias`` - An alias used to access the application (Default value is
   ``adminer``/``adminer_editor``, which means that in order to access it one has
-  to open http://www.oxideshop.dev/adminer/ /
-  http://www.oxideshop.dev/adminer_editor/)
+  to open http://www.oxideshop.local/adminer/ /
+  http://www.oxideshop.local/adminer_editor/)
 * ``pkg_sha256`` - A SHA-256 hash of file contents downloaded from resource
   defined in ``pkg_url``
 

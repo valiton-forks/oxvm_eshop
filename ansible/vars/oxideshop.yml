@@ -2,9 +2,9 @@
 vagrant_local:
   vm:
     name: oxideshop
-    hostname: oxideshop.dev
+    hostname: oxideshop.local
     aliases:
-      - www.oxideshop.dev
+      - www.oxideshop.local
     app_shared_folder:
       source: oxideshop
       target: /var/www/oxideshop
@@ -55,9 +55,9 @@ eshop_path:
   root: "{{ eshop_target_path }}"
   source: "{{ eshop_target_path }}/source"
   tests: "{{ eshop_target_path }}/tests"
-  library: "{{ eshop_target_path }}/library"
   modules: "{{ eshop_target_path }}/source/modules"
 eshop_target_path: "{{ vagrant_local.vm.app_shared_folder.target }}"
+theme_target_path: "{{ vagrant_local.vm.app_shared_folder.target }}/source/application/views/flow"
 eshop:
   config:
     utf_mode: 1
@@ -66,14 +66,17 @@ eshop:
     clean_vendors: true
     env: "SHOP_PATH=\"'{{ eshop_path.source }}'\" SHOP_TESTS_PATH='{{ eshop_path.tests }}' PARTIAL_MODULE_PATHS='null'"
     root: "{{ eshop_path.root }}"
-    vendor: "{{ eshop_target_path }}/vendor"
+    vendor: "{{ eshop_target_path }}/source/vendor"
     cache_url: ~
-    json_source_url: https://raw.githubusercontent.com/OXID-eSales/oxideshop_ce/b-5.2-ce/source/composer.json
-    lock_source_url: https://raw.githubusercontent.com/OXID-eSales/oxideshop_ce/b-5.2-ce/source/composer.lock
+    json_source_url: https://raw.githubusercontent.com/OXID-eSales/oxideshop_ce/b-5.3-ce/source/composer.json
+    lock_source_url: https://raw.githubusercontent.com/OXID-eSales/oxideshop_ce/b-5.3-ce/source/composer.lock
     prefer: dist
   source:
     repo: https://github.com/OXID-eSales/oxideshop_ce.git
-    version: stable-master
+    version: b-5.3-ce
+  theme:
+    repo: https://github.com/OXID-eSales/flow_theme.git
+    version: b-1.0
   sdk:
     path: ~/eshop_sdk
     module_skeleton_generator:

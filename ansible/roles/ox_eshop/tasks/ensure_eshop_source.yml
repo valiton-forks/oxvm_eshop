@@ -11,3 +11,11 @@
 - name: Transfer eshop clone to shared folder
   shell: rsync -ra /opt/oe/. {{ eshop_target_path }} warn=no
   when: not eshop_source.stat.exists
+
+- name: Clone out flow theme repository
+  become: yes
+  git: repo={{ eshop.theme.repo }} dest={{ theme_target_path }} version={{ eshop.theme.version }}
+
+- name: Copy theme related files
+  become: yes
+  command: cp -R {{ theme_target_path }}/out/flow {{ eshop_target_path }}/source/out/
