@@ -53,7 +53,7 @@ Quick start
 
 .. code:: bash
 
-  git clone --recursive https://github.com/OXID-eSales/oxvm_eshop.git
+  git clone --recursive -b b-5.3 https://github.com/OXID-eSales/oxvm_eshop.git
 
 * Start the VM:
 
@@ -841,7 +841,7 @@ In case the following two packages were received:
 .. code:: bash
 
   # Clone out VM repository
-  git clone --recursive https://github.com/OXID-eSales/oxvm_eshop.git
+  git clone --recursive -b b-5.3 https://github.com/OXID-eSales/oxvm_eshop.git
   cd oxvm_eshop
 
   # Download packages
