@@ -46,7 +46,7 @@ Quick start
 
 .. code:: bash
 
-  git clone -b 6.0 --recursive https://github.com/OXID-eSales/oxvm_eshop.git
+  git clone -b b-6.0 --recursive https://github.com/OXID-eSales/oxvm_eshop.git
 
 * Start the VM [#no_dev_option]_:
 
