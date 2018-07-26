@@ -1,0 +1,13 @@
+---
+- name: Creates oxid tmp directory in debian shared memory (uses tmpfs)
+  file:
+    path: "{{ oxvm_bds.oxidtmpdir }}"
+    state: directory
+    owner: vagrant
+    group: vagrant
+    mode: 0775
+    recurse: yes
+  when: oxvm_bds.oxidtmpdir is defined
+  # creates: "{{ oxvm_bds.oxidtmpdir }}"
+  # tags:
+  # - internal_always
