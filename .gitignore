@@ -11,7 +11,7 @@
 *.swp
 
 # Ansible
-personal.yml
+## personal.yml
 ansible/*.retry
 
 # Application specific

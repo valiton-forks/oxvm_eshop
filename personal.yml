@@ -1,0 +1,78 @@
+---
+# Override any variable from 'ansible/vars/default.yml'
+vagrant_local:
+  vm:
+    name: szshopvm
+    provider: virtualbox
+    base_box: bento/ubuntu-16.04
+    hostname: szshop-dev.sueddeutsche.de
+    ip: 10.169.0.67
+    memory: '2048'
+    cpus: 4
+    app_shared_folder:
+      source: ../..
+      target: /var/www
+
+apache:
+  docroot: /var/www/szshop_vagrant/oxid
+
+mysql:
+  root_password: 'root'
+  database: bds
+  user: bds
+  password: bds
+  dump: ''
+
+php:
+  install: true
+  packages:
+    # - cli
+    - intl
+    - mcrypt
+    - mysql
+    - gd
+    - curl
+    - xml
+  version: 5.6
+  # version: 7.1
+  display_errors: Off
+  xdebug:
+    install: '1'
+  zendguard:
+    install: true
+  ioncube:
+    install: false
+
+eshop:
+  composer:
+    vendor: "{{ eshop_path.source }}/vendor"
+
+varnish:
+  install: false
+
+selenium:
+  install: false
+
+adminer:
+  install: false
+
+adminer_editor:
+  install: false
+
+mailhog:
+  install: false
+
+java:
+  install: false
+
+elasticsearch:
+  install: false
+
+
+apache_bds:
+  additionalvhost_docroot: /var/www/szshop_responsive/oxid
+  additionalvhost_servername: szshop-devresponsive.sueddeutsche.de
+
+oxvm_bds:
+  oxidtmpdir: /dev/shm/shop/tmp
+
