@@ -6,6 +6,8 @@ vagrant_local:
     provider: virtualbox
     base_box: bento/ubuntu-16.04
     hostname: szshop-dev.sueddeutsche.de
+    aliases:
+      - szshop-devresponsive.sueddeutsche.de
     ip: 10.169.0.67
     memory: '2048'
     cpus: 4
