@@ -68,6 +68,9 @@ java:
 elasticsearch:
   install: false
 
+landing:
+  install: false
+
 
 apache_bds:
   additionalvhost_docroot: /var/www/szshop_responsive/oxid
