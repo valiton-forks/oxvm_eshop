@@ -13,7 +13,9 @@
   - internal_always
 
 - name: run scripts on vagrant-up always
-  shell: "{{ item }}"
+  # check if exists, but force success when not existing,
+  # as it might fail on first provisioning but is executed later again anyway
+  shell: "[ -e {{ item }} ] && {{ item }} || true"
   with_items: "{{ oxvm_bds.runscripts_vagrantup_always }}"
   when: oxvm_bds.runscripts_vagrantup_always
   tags:
