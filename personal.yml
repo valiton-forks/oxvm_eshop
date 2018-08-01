@@ -31,7 +31,7 @@ apache:
 
 mysql:
   root_password: 'root'
-  database: bds
+  database: devlocal
   user: bds
   password: bds
   dump: ''
