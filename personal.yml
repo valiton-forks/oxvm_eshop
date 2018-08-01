@@ -11,12 +11,23 @@ vagrant_local:
     ip: 10.169.0.67
     memory: '2048'
     cpus: 4
+    # app_shared_folder will be mounted to /mnt/asf
+    # and inside the box: bindfs will be used to mount /mnt/asf to /var/www
     app_shared_folder:
       source: ../..
       target: /var/www
 
+eshop_target_path: "{{ vagrant_local.vm.app_shared_folder.target }}/szshop_vagrant"
+theme_target_path: "{{ eshop_target_path }}/oxid/application/views/flow"
+
+eshop_path:
+  root: "{{ eshop_target_path }}"
+  source: "{{ eshop_target_path }}/oxid"
+  tests: "{{ eshop_target_path }}/tests"
+  modules: "{{ eshop_target_path }}/oxid/modules"
+
 apache:
-  docroot: /var/www/szshop_vagrant/oxid
+  docroot: "{{ eshop_path.source }}"
 
 mysql:
   root_password: 'root'
@@ -28,6 +39,7 @@ mysql:
 php:
   install: true
   packages:
+    # cli package install will fail, it is present anyway.
     # - cli
     - intl
     - mcrypt
@@ -47,7 +59,14 @@ php:
 
 eshop:
   composer:
-    vendor: "{{ eshop_path.source }}/vendor"
+    clean_vendors: false
+    vendor: "{{ eshop_target_path }}/oxid/vendor"
+  sdk:
+    path: ~/eshop_sdk
+    module_skeleton_generator:
+      install: false
+    module_certification_tools:
+      install: false
 
 varnish:
   install: false
@@ -75,9 +94,14 @@ landing:
 
 
 apache_bds:
-  additionalvhost_docroot: /var/www/szshop_responsive/oxid
+  additionalvhost_docroot: "{{ vagrant_local.vm.app_shared_folder.target }}/szshop_devresponsive/oxid"
   additionalvhost_servername: szshop-devresponsive.sueddeutsche.de
 
 oxvm_bds:
-  oxidtmpdir: /dev/shm/shop/tmp
+  shmdirs:
+  - /dev/shm/shop/tmp
+  - /dev/shm/devresponsive/tmp
+
+php_bds:
+  ubuntu1604_php56cli_logfile: /var/log/apache2/php_errors_cli.log
 
