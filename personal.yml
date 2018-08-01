@@ -94,14 +94,20 @@ landing:
 
 
 apache_bds:
+  install: true
   additionalvhost_docroot: "{{ vagrant_local.vm.app_shared_folder.target }}/szshop_devresponsive/oxid"
   additionalvhost_servername: szshop-devresponsive.sueddeutsche.de
 
+php_bds:
+  install: true
+  ubuntu1604_php56cli_logfile: /var/log/apache2/php_errors_cli.log
+
 oxvm_bds:
+  install: true
   shmdirs:
   - /dev/shm/shop/tmp
   - /dev/shm/devresponsive/tmp
-
-php_bds:
-  ubuntu1604_php56cli_logfile: /var/log/apache2/php_errors_cli.log
+  runscripts_vagrantup_always:
+  - /var/www/szshop_vagrant/oxid/bin/create_symlinks_for_windows_git.sh
+  - /var/www/szshop_responsive/oxid/bin/create_symlinks_for_windows_git.sh
 

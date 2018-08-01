@@ -7,7 +7,14 @@
     group: vagrant
     mode: 0775
     recurse: yes
-  when: oxvm_bds is defined and oxvm_bds.shmdirs is defined
   with_items: "{{ oxvm_bds.shmdirs }}"
+  when: oxvm_bds.shmdirs
+  tags:
+  - internal_always
+
+- name: run scripts on vagrant-up always
+  shell: "{{ item }}"
+  with_items: "{{ oxvm_bds.runscripts_vagrantup_always }}"
+  when: oxvm_bds.runscripts_vagrantup_always
   tags:
   - internal_always

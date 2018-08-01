@@ -1,5 +1,5 @@
 ---
 - include: install.yml
-  when: oxvm_bds is defined
+  when: oxvm_bds.install
   tags:
-    - oxvm_bds
+   - oxvm_bds

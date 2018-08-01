@@ -85,3 +85,10 @@ eshop:
     module_certification_tools:
       install: true
       repo: https://github.com/OXID-eSales/module_certification_tools.git
+
+
+oxvm_bds:
+  install: true
+  shmdirs: false
+  runscripts_vagrantup_always: false
+
