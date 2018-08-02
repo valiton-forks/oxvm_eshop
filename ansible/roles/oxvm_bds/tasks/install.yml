@@ -20,3 +20,10 @@
   when: oxvm_bds.runscripts_vagrantup_always
   tags:
   - internal_always
+
+  # - name: my test loop
+  #   debug:
+  #     msg: "{{ item.0 }} - {{ item.1 }}"
+  # loop: "{{ vagrant_local.vm.aliases |zip(apache_bds.additionalvhosts_docroots) |list }}"
+  #   tags:
+  # - internal_always

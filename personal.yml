@@ -95,8 +95,8 @@ landing:
 
 apache_bds:
   install: true
-  additionalvhost_docroot: "{{ vagrant_local.vm.app_shared_folder.target }}/szshop_devresponsive/oxid"
-  additionalvhost_servername: szshop-devresponsive.sueddeutsche.de
+  additionalvhosts_docroots:
+  - "{{ vagrant_local.vm.app_shared_folder.target }}/szshop_devresponsive/oxid"
 
 php_bds:
   install: true
