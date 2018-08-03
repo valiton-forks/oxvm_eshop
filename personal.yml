@@ -98,6 +98,9 @@ apache_bds:
   additionalvhosts_docroots:
   - "{{ vagrant_local.vm.app_shared_folder.target }}/szshop_devresponsive/oxid"
 
+mysql_bds:
+  install: true
+
 php_bds:
   install: true
   ubuntu1604_php56cli_logfile: /var/log/apache2/php_errors_cli.log
