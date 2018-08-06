@@ -96,7 +96,7 @@ landing:
 apache_bds:
   install: true
   additionalvhosts_docroots:
-  - "{{ vagrant_local.vm.app_shared_folder.target }}/szshop_devresponsive/oxid"
+  - "{{ vagrant_local.vm.app_shared_folder.target }}/szshop_responsive/oxid"
 
 mysql_bds:
   install: true
