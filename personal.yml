@@ -47,6 +47,7 @@ php:
     - gd
     - curl
     - xml
+    - mbstring
   version: 5.6
   # version: 7.1
   display_errors: Off
